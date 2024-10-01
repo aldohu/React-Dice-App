@@ -1,25 +1,50 @@
 import logo from './logo.svg';
 import './App.css';
-
+import Dice from './Dice';
+import { useState } from 'react';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [roll, rollingDice] = useState(false);
+	const [disabled, setDisabled] = useState(false);
+	const [dice1, setDice1] = useState(1);
+	const [dice2, setDice2] = useState(1);
+	const rollDice = () => {
+		if (disabled) return;
+		if (!roll) {
+			const newDice1 = Math.floor(Math.random() * 6) + 1;
+			const newDice2 = Math.floor(Math.random() * 6) + 1;
+
+			console.log('Rolling dice:', newDice1, newDice2); // Log the new values
+			setDice1(newDice1);
+			setDice2(newDice2);
+
+			rollingDice(true);
+			setDisabled(true);
+			setTimeout(() => {
+				rollingDice(false);
+				setDisabled(false);
+			}, 1000);
+		}
+	};
+	return (
+		<div className="App">
+			<h1 className="App-title">Dice Game</h1>
+			<Dice
+				value={dice1}
+				roll={roll}
+			/>
+			<Dice
+				value={dice2}
+				roll={roll}
+			/>
+			<button
+				className="App-button"
+				onClick={rollDice}
+				disabled={disabled} // Disable button during dice roll
+			>
+				Roll
+			</button>
+		</div>
+	);
 }
 
 export default App;
