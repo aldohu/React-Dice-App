@@ -24,7 +24,5 @@ Here are the steps followed to complete this project:
 - [x] **Make state for dice one and dice two**: Two separate states manage the dice values.
 - [x] **Animate dice on roll**: Add animations to the dice when their values change on button click.
 
-## How to Run the Project
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/dice-roll-app.git
+
+ 
