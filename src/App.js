@@ -28,21 +28,33 @@ function App() {
 	return (
 		<div className="App">
 			<h1 className="App-title">Dice Game</h1>
-			<Dice
-				value={dice1}
-				roll={roll}
-			/>
-			<Dice
-				value={dice2}
-				roll={roll}
-			/>
-			<button
-				className="App-button"
-				onClick={rollDice}
-				disabled={disabled} // Disable button during dice roll
-			>
-				Roll
-			</button>
+			<div className="App-dice-container">
+				<Dice
+					value={dice1}
+					roll={roll}
+				/>
+				<Dice
+					value={dice2}
+					roll={roll}
+				/>
+			</div>
+			{!roll ? (
+				<button
+					className="App-button"
+					onClick={rollDice}
+					disabled={disabled} // Disable button during dice roll
+				>
+					Roll
+				</button>
+			) : (
+				<button
+					className="App-button"
+					onClick={rollDice}
+					disabled={disabled} // Disable button during dice roll
+				>
+					Rolling...
+				</button>
+			)}
 		</div>
 	);
 }
